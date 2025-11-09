@@ -24,9 +24,13 @@ df = pd.read_csv('xy_data.csv')
 points = df[['x', 'y']].values
 
 def compute_residuals(params, points):
+    
     theta, M, X = params
+    
     cos_th = np.cos(theta)
+    
     sin_th = np.sin(theta)
+    
     v = np.array([cos_th, sin_th])
     w = np.array([-sin_th, cos_th])
     p0 = np.array([X, 42])
