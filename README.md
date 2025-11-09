@@ -57,4 +57,4 @@ params_init = [theta_init, 0.0, X_init]
 
 ### Optimize
 res = least_squares(compute_residuals, params_init, args=(points,))
-print(res.x)  # Output: [0.5235983 0.03 55.0]
+print(res.x)
