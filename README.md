@@ -18,7 +18,7 @@ import numpy as np
 import pandas as pd
 from scipy.optimize import least_squares
 
-# Load data
+### Load data
 df = pd.read_csv('xy_data.csv')
 points = df[['x', 'y']].values
 
@@ -41,7 +41,7 @@ def compute_residuals(params, points):
         residuals.append(d - pred_d)
     return residuals
 
-# Initial guess using PCA
+### Initial guess using PCA
 mean = np.mean(points, axis=0)
 centered = points - mean
 cov = np.cov(centered.T)
@@ -55,6 +55,6 @@ cos_th = np.cos(theta_init)
 X_init = mean[0] - mean_t * cos_th
 params_init = [theta_init, 0.0, X_init]
 
-# Optimize
+### Optimize
 res = least_squares(compute_residuals, params_init, args=(points,))
 print(res.x)  # Output: [0.5235983 0.03 55.0]
