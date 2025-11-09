@@ -20,6 +20,7 @@ from scipy.optimize import least_squares
 
 ### Load data
 df = pd.read_csv('xy_data.csv')
+
 points = df[['x', 'y']].values
 
 def compute_residuals(params, points):
@@ -42,10 +43,15 @@ def compute_residuals(params, points):
     return residuals
 
 ### Initial guess using PCA
+
 mean = np.mean(points, axis=0)
+
 centered = points - mean
+
 cov = np.cov(centered.T)
+
 eigvals, eigvecs = np.linalg.eig(cov)
+
 idx = np.argmax(eigvals)
 direction = eigvecs[:, idx]
 theta_init = np.arctan2(direction[1], direction[0])
